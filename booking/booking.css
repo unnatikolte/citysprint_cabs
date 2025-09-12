@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+   body {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  background-color: #111;
+  color: #fff;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.top-bar .top-left span {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.top-bar .top-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.top-bar .top-right a {
+  color: #ccc;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+}
+.top-bar .top-right a:hover { color: #ff5500; }
+
+@media (max-width: 600px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px 20px;
+    gap: 12px;
+    position: relative;
+  }
+
+  .top-left {
+    width: 100%;
+    text-align: center;
+  }
+
+  .top-left span {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+  }
+
+  .top-right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  .top-right a {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+  }
+}
+/* ===== Marquee Announcement ===== */
+.top-marquee {
+  background-color: #e67e22;
+  color: white;
+  padding: 6px 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+  margin-top: 0.5px;
+}
+.marquee-track {
+  white-space: nowrap;
+  display: inline-block;
+  animation: scroll-left 18s linear infinite;
+}
+@keyframes scroll-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+@media (max-width: 600px) {
+  .top-marquee { font-size: 12px; text-align: center; }
+}
+
+/* ===== NAVIGATION BAR ===== */
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1002; /* Above overlay */
+  flex-wrap: wrap;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+/* Logo scaling for all screens; will resize further for mobile */
+/* Desktop logo styling */
+.logo-container {
+  height: 101px; /* Fixed navbar height */
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 180px; /* Max within container */
+  max-width: 180px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.logo-container {
+  overflow: hidden;
+}
+/* Mobile adjustments */
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 26px;         /* Give more vertical space */
+  padding: 6px;         /* Optional: Outer clickable area */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1003;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;           /* Or try 2.5px for an even crisper style */
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+/* Nav menu desktop */
+#nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+#nav-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+}
+#nav-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 4px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+/* Underline on hover */
+#nav-menu ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #ff6b00;
+  transition: width 0.3s ease-in-out;
+}
+#nav-menu ul li a:hover::after,
+#nav-menu ul li a.active::after {
+  width: 100%;
+}
+#nav-menu ul li a:hover { color: #ff6b00; }
+
+#nav-menu .btn {
+  background-color: #ff6b00;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: 24px;
+}
+#nav-menu .btn:hover {
+  background-color: #e95c00;
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  #nav-menu .btn {
+    width: 180px;
+    max-width: 90%;
+    margin: 20px auto; /* center the button */
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Overlay for mobile nav */
+.mobile-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.48);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Slide-in Mobile Menu */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  #nav-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 82vw;
+    max-width: 320px;
+    padding: 30px 24px 24px;
+    z-index: 1004;
+    box-shadow: -2px 0 18px 3px rgba(0,0,0,0.10);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(.7,.3,.1,1);
+    gap: 0;
+    margin-top: 0;
+  }
+  #nav-menu.active {
+    display: flex;
+    transform: translateX(0);
+  }
+  #nav-menu ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  #nav-menu .btn {
+    display: block;
+    margin: 10px 0 0 0;
+    width: 100%;
+    text-align: center; 
+  }
+  .logo-container { height: 60px; }
+  .logo { height: 90px; max-width: 130px; }
+  .nav-bar {
+    z-index: 1002;
+    position: relative;
+  }
+}
+
+/* Body scroll lock when menu open */
+body.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .nav-bar { padding: 10px 11px; }
+  .top-bar { padding: 8px 7px; }
+}
+
+@media (max-width: 400px) {
+  .top-bar, .top-bar .top-right a { font-size: 12px; }
+}
+
+/* Minimal shadow to hero/card etc, as in your code. */
+/* Prevent body scroll when mobile menu is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Overlay background for mobile nav */
+
+
+.booking-hero {
+  background: linear-gradient(to right, #fff7f0, #ffe4d0);
+  padding: 4rem 1rem;
+  text-align: center;
+}
+.booking-hero-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.booking-hero h1 {
+  font-size: 2.7rem;
+  color: #ff6600;
+  font-weight: bold;
+}
+.booking-hero p {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 1rem 0 2rem;
+}
+.booking-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn-primary, .btn-outline {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-primary {
+  background-color: #ff6600;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #e25500;
+}
+.btn-outline {
+  border: 2px solid #ff6600;
+  color: #ff6600;
+}
+.btn-outline:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+/* Modern Booking Form */
+.booking-container {
+  background-color: #f9f9f9;
+  padding: 4rem 1rem;
+}
+.booking-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+#bookingForm {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 1s ease;
+}
+#bookingForm input,
+#bookingForm select,
+#bookingForm textarea {
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+#bookingForm input:focus,
+#bookingForm select:focus,
+#bookingForm textarea:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.2);
+  outline: none;
+}
+#bookingForm button {
+  background-color: #ff6600;
+  color: #fff;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+#bookingForm button:hover {
+  background-color: #e25500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Base floating icon style */
+.floating-icon {
+  position: fixed;
+  bottom: 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 22px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  transition: transform 0.3s ease, background-color 0.3s;
+  text-decoration: none;
+}
+
+/* WhatsApp icon (bottom right) */
+.whatsapp-float {
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebd5a;
+  transform: scale(1.1);
+}
+
+/* Phone icon (bottom left) */
+.phone-float {
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+}
+
+.phone-float:hover {
+  background-color: #0069d9;
+  transform: scale(1.1);
+}
+
+/* ✅ Responsive spacing for smaller devices */
+@media (max-width: 480px) {
+  .floating-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    bottom: 15px;
+  }
+
+  .whatsapp-float {
+    right: 15px;
+  }
+
+  .phone-float {
+    left: 15px;
+  }
+}
+/* How It Works Section */
+.how-it-works {
+  background: #fff;
+  padding: 80px 30px;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.step-box {
+  background: #f9fbfd;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.step-box:hover {
+  transform: translateY(-6px);
+}
+
+.step-icon {
+  font-size: 2.5rem;
+  color: #ff6b00;
+  margin-bottom: 15px;
+}
+
+.step-box h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.step-box p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
